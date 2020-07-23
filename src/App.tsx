@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { styled } from '@material-ui/core/styles';
 
 import Controls from './components/Controls/Controls';
@@ -28,6 +28,44 @@ export default function App() {
   // We will dynamically set the height with 'window.innerHeight', which means that this
   // will look good on mobile browsers even after the location bar opens or closes.
   const height = useHeight();
+
+  // const webSocket = new WebSocket("ws://localhost:8080");
+
+  // useEffect(() => {
+  //   console.log(1);
+
+  //   webSocket.onmessage = (msg) => {
+  //     const data = JSON.parse(msg.data);
+  //     if (data.event === "interim-transcription") {
+  //       //document.getElementById("transcription-container").innerHTML = data.text;
+  //       console.log(data.text);
+
+  //     }
+  //   }
+  // }, [])
+
+  // const [isPaused, setPause] = useState(false);
+  // const ws = useRef<WebSocket>(null);
+
+  // useEffect(() => {
+  //     ws.current = new WebSocket("wss://c5047600f0e2.ngrok.io/");
+  //     ws.current.onopen = () => console.log("ws opened");
+  //     ws.current.onclose = () => console.log("ws closed");
+
+  //     return () => {
+  //         ws.current.close();
+  //     };
+  // }, []);
+
+  // useEffect(() => {
+  //     if (!ws.current) return;
+
+  //     ws.current.onmessage = e => {
+  //         if (isPaused) return;
+  //         const message = JSON.parse(e.data);
+  //         console.log("e", message);
+  //     };
+  // }, [isPaused]);
 
   return (
     <Container style={{ height }}>

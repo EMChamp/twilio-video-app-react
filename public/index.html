@@ -20,10 +20,37 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Twilio Video App</title>
+    <style>
+      p#transcription-container {
+
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: center;
+        bottom: 140px;
+        position: fixed;
+        font-size: x-large;
+        width: 80%;
+        background: #00000099;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <p id="transcription-container"></p>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        webSocket = new WebSocket("ws://localhost:8080");
+        webSocket.onmessage = function (msg) {
+          const data = JSON.parse(msg.data);
+          if (data.event === "interim-transcription") {
+            document.getElementById("transcription-container").innerHTML =
+              data.text;
+          }
+        };
+      });
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
